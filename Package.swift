@@ -14,8 +14,9 @@ let package = Package(
         .package(url: "https://github.com/nicklockwood/SwiftFormat.git", .exact("0.48.17")),
     ],
     targets: [
+        .target(name: "SotoCodeGenerator", dependencies: ["SotoCodeGeneratorLib"]),
         .target(
-            name: "SotoCodeGenerator",
+            name: "SotoCodeGeneratorLib",
             dependencies: [
                 .product(name: "SotoSmithy", package: "soto-smithy"),
                 .product(name: "SotoSmithyAWS", package: "soto-smithy"),
@@ -26,7 +27,7 @@ let package = Package(
         ),
         .testTarget(
             name: "SotoCodeGeneratorTests",
-            dependencies: [.byName(name: "SotoCodeGenerator")]
+            dependencies: [.byName(name: "SotoCodeGeneratorLib")]
         )
     ]
 )
